@@ -10,6 +10,8 @@ namespace DZ_2
             double R = CheckR(Console.ReadLine());
             if (R < 3)
                 Console.WriteLine("Функция не определена.");
+            if (R == 0)
+                Console.WriteLine($"y({-6:0.0}) = {0:0.00}");
             for (double x = -6 - R; x <= -3; x += 0.2) 
             {
                 if (x < -6)
@@ -22,6 +24,8 @@ namespace DZ_2
                 Console.WriteLine($"y({-3.0:0.0}) = {Sector2(-3.0):0.00}");
                 Console.WriteLine($"Функция не определена на промежутке (-3; {-R})");
             }
+            if (R == 0)
+                Console.WriteLine($"y({0:0.0}) = {0:0.00}");
             for (double x = 0 - R; x <= 9; x += 0.2) 
             {
                 if (x < 0)
@@ -33,10 +37,10 @@ namespace DZ_2
             }
             Console.WriteLine($"y({9.0:0.0}) = {Sector5(9.0):0.00}");
         }
-        static double CheckR(string user_input) // проверяет, является ли введённое значение числом типа double в нужном диапазоне (0 < R <= 3)
+        static double CheckR(string user_input) // проверяет, является ли введённое значение числом типа double в нужном диапазоне (0 >= R <= 3)
         {
             if (double.TryParse(user_input, out double value))
-                if (value > 0 && value <= 3)
+                if (value >= 0 && value <= 3)
                     return value;
             Console.WriteLine("Введённая вами строка не является нужным числом. Конец программы.");
             Environment.Exit(0);
